@@ -1,0 +1,147 @@
+Why Docker Compose?-  https://www.youtube.com/watch?v=bE-iRXNn9nM
+
+https://www.youtube.com/watch?v=97p4R506W6M
+
+https://docs.docker.com/compose/install/linux/#install-the-plugin-manually
+
+1.Install the latest version of Docker Compose:
+
+$sudo apt-get update
+$sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+2.
+sudo chmod +x /usr/local/bin/docker-compose
+
+3. Test the installation:
+
+docker-compose --version
+
+4. 
+$ mkdir compose
+$ cd compose
+$ nano wordpress.yaml
+**********************************************************************************
+write the following content:
+
+version: '3'
+services:
+  web:
+  image: nginx
+  db:
+  image: mysql
+  ports:
+  - "3306:3306"
+  environment:
+  - MYSQL_ROOT_PASSWORD=password
+  - MYSQL_USER=user
+  - MYSQL_PASSWORD=password
+  - MYSQL_DATABASE=demodb
+
+Save & Exit
+
+$ docker-compose up -d
+$ mv wordpress.yaml docker-compose.yml
+$ ls
+$ docker-compose up -d
+
+GOTO Web copy nad paste ipv4 public ip address of instance:3306 and press enter
+
+$ docker ps
+
+
+******************************************************************************
+https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose
+
+***************************************************************************
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MYSQL_DATABASE=wordpress
+    volumes: 
+      - dbdata:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+      - app-network
+
+  wordpress:
+    depends_on: 
+      - db
+    image: wordpress:5.1.1-fpm-alpine
+    container_name: wordpress
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - app-network
+
+  webserver:
+    depends_on:
+      - wordpress
+    image: nginx:1.15.12-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - wordpress:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+    networks:
+      - app-network
+
+  certbot:
+    depends_on:
+      - webserver
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - wordpress:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email sammy@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
+
+volumes:
+  certbot-etc:
+  wordpress:
+  dbdata:
+
+networks:
+  app-network:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+________________________________________________________________________________
+ANOTHER INSTALLATION STEPS:
+
+-To download and install Compose standalone, run:
+
+curl -SL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+ 
+-Choose to install Compose for all users:
+sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+
+-Test the installation:
+
+docker-compose --version
+
+-If the command docker-compose fails after installation, check your path. You can also create a symbolic link to /usr/bin or any other directory in your path. For example:
+
+ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose

@@ -1,0 +1,95 @@
+1. sudo apt-get update
+2. sudo apt-get install docker.io
+3. docker --version
+4. sudo docker pull ubuntu 
+5. sudo docker run -it -d ubuntu = create container
+6. sudo docker ps = show container
+sudo docker stop con_id
+7 . sudo docker exec -it  2130351 bash = enter in run environment
+
+exit =  exit from container
+sudo docker rm cont_id = delete container
+sudo docker rmi img_id
+udo docker rm -f cont_id
+sudo docker kill cont_id = force kill
+sudo docker start cont_id = start the container
+sudo docker rm -f $(sudo docker ps -a -q) = remove all container in once
+8. apt-get update
+9. apt-get install apache2
+10. service apache2 status
+11. service apache2 start
+exit 
+12. sudo docker commit cont_id dockerhubname/any_img_name  = replica of container
+13. sudo docker run -it -p 82:80 -d thedeveloperyug/apache212
+14. sudo docker login
+15. sudo docker push thedeveloperyug/apache2
+
+
+
+_______________________________________________
+
+
+sudo apt-get update
+sudo apt-get install docker.io
+sudo docker --version
+sudo docker run -it -d ubuntu
+sudo docker ps
+sudo docker exec -it <id> bash
+exit
+sudo docker stop <id>
+sudo docker ps
+sudo docker ps -a
+sudo docker kill<id>
+sudo docker rm <id>
+sudo docker images
+sudo docker rmi <image id>
+go to docker hub
+sudo docker run -it -d ubuntu
+sudo pocker ps
+sudo docker exec -it <container id> bash
+mkdir app
+ls
+exit
+sudo docker ps
+sudo docker rm -f <container id>
+sudo docker run -it -d ubuntu
+sudo docker exec <id> bash
+ls
+mkdir app
+ls
+exit
+sudo docker ps
+sudo docker ommit <image name>
+sudo docker run -it -d test
+sudo docker exec -it <id> bash
+sudo docker rm -f $(sudo docker ps -a -q)
+sudo docekr ps
+sudo docker run -it -d ubuntu
+sudo docker exec -it <container id> bash
+apt-get update
+apt-get install apache2
+service apache2 status
+service apacher start
+service apache2 status
+exit
+sudo docker ps
+sudo docker commit <container id> <docker id>/apache
+sudo docker images
+sudo docker commit
+sudo socker ps
+sudo docker -rm -f <container id>
+sudo docker run -it e-d <docker account>/apache
+sudo docker run -it -p 82:80 -d <docker accinunt>/apache
+sudo docker ps
+sudo docker <comtainer id>
+service apache2 start
+go on to browser(paste ipv4 address:82)
+exit
+sudo docker ps
+sudo docker stop <conatiner id(apache one)>
+sudo docker start <conatiner id>
+sudo docker login
+<userid>
+<password>
+sudo docker push <docker account>/apache
+<check your docker hub account and check the repository>

@@ -1,0 +1,41 @@
+1.  sudo docker volume create test1
+ 2. sudo docker volume ls
+
+ 3. sudo docker run -it --mount source=test1,target=/app -d ubuntu
+
+ 4. sudo docker exec -it  e406fc97ea8b7d9dd2cc6615716cff7c81770fde7c3db9973823fa537d5ed0e8 bash
+
+=> create 2 html files in app folder 
+toch a.html,b.html
+=> create duplicate session and repeat step 3 and 4.
+=> Now go inside app folder and create new html file.
+=> check both containers
+output - same files will be showing in both container (docker volume connected)
+
+
+------------for images--------------------------
+
+ sudo docker images
+
+sudo docker volume create apache
+
+ sudo  docker run -it --mount source=apache,target=/var/www/html -d new_image
+
+ sudo docker volume ls
+
+ sudo docker exec -it f38489d739d8f4214025c703e9104ce232384aca1b12568d08a0f0e7429f5e51 bash
+cd app
+ls
+
+--------------------------------------
+ sudo docker run -it --mount source=test1,target=/app -d ubuntu
+
+
+ sudo docker exec -it cef60137690c52173fb0c4ab54c54ce706806726cf2c77940d8caceb33175bec bash
+ 
+
+cd app
+ls
+go inside container 
+your fill will be copied
+

@@ -1,0 +1,29 @@
+create a dir = mkdir Dockerfile
+Go inside the dir
+create 2 file  = vim dockerfile, vim abc.htm
+build the images
+sudo docker build . -t new_dockerfile
+Port Mapping 
+sudo docker run -it -p 85:80 -d  new_dockerfiile
+
+
+
+abc.html
+----------------------
+<html>
+        <title>hello</title>
+        <body>
+                <h1> DEVOPS Practical </h1>
+        </body>
+        </html>
+
+----------------------
+
+dockerfile
+---------------
+FROM ubuntu
+RUN apt-get update
+RUN apt-get -y install apache2
+ADD . var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
+ENV name devops
