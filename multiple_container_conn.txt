@@ -1,0 +1,44 @@
+create containers 
+docker run -d --name web1 -p 8001:80 eboraas/apache-php
+docker run -d --name web2 -p 8002:80 eboraas/apache-php
+docker run -d --name web3 -p 8003:80 eboraas/apache-php
+
+After creating 
+
+docker exec -it <container id> bash
+
+In container 
+
+->apt-get update
+->apt-get install inetutils-ping
+->exit
+
+exit from container and execute
+
+docker network create myNetwork
+
+docker network connect myNetwork web1
+docker network connect myNetwork web2
+docker network connect myNetwork web3
+
+docker network inspect myNetwork
+
+again go to one container and execute 
+ping web2
+(Note: use container which is having apt-get update and apt-get install inetutils-ping done)
+
+__________________________________________________
+
+
+Commands for docker network:
+sudo docker network ls
+sudo docker run -dit —name ubuntu1 ubuntu
+sudo docker run -dit —name ubuntu2 ubuntu
+sudo docker network inspect bridge
+sudo docker attach ubuntu2
+ping -c 4 |ip_address of container 2|
+sudo docker network create --driver |driver_name| |network_name|
+sudo docker network ls
+sudo docker run -it --network=|new_network| ubuntu bash
+sudo docker network ls
+sudo docker network inspect |new_network|

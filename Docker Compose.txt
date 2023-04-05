@@ -9,8 +9,7 @@ https://docs.docker.com/compose/install/linux/#install-the-plugin-manually
 $sudo apt-get update
 $sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 
-2.
-sudo chmod +x /usr/local/bin/docker-compose
+2.sudo chmod +x /usr/local/bin/docker-compose
 
 3. Test the installation:
 
@@ -120,14 +119,6 @@ networks:
   app-network:
     driver: bridge
 
-
-
-
-
-
-
-
-
 ________________________________________________________________________________
 ANOTHER INSTALLATION STEPS:
 
@@ -144,4 +135,4 @@ docker-compose --version
 
 -If the command docker-compose fails after installation, check your path. You can also create a symbolic link to /usr/bin or any other directory in your path. For example:
 
- sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
