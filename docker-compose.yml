@@ -1,0 +1,16 @@
+version: '3'
+services:
+  reactjs-server:
+    build:
+      context: ./
+    ports:
+      - "3080:3080"
+    container_name: node-api
+    volumes:
+       - ./api:/usr/src/app/api
+       - /usr/src/app/api/node_modules
+  react-ui:
+    build:
+      context: ./
+    ports:
+      - "3000:3000"
